@@ -1,5 +1,7 @@
 #include <pebble.h>
+#include "calculation/calculation.h"
 #include "event/event.h"
+#include "health/health.h"
 #include "state/global.h"
 #include "state/state.h"
 #include "wakeup/wakeup.h"
@@ -10,7 +12,12 @@ static Window *s_window;
 static void prv_init(void) {
   State* state = state_init();
   event_init(state);
-  wakeup_init(state);
+  health_init(state);
+  calculation_init(state);
+  if (!wakeup_init(state)) {
+    return;
+  }
+  main_init(state);
 
   s_window = window_create();
   window_set_window_handlers(s_window, (WindowHandlers) {

@@ -2,4 +2,4 @@
 #include <pebble.h>
 #include "../state/global.h"
 
-bool wakeup_init(State* state);
+void health_init(State* state);

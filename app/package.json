@@ -6,7 +6,7 @@
   "private": true,
   "dependencies": {},
   "pebble": {
-    "displayName": "get-active",
+    "displayName": "Get active!",
     "uuid": "cff34931-83f9-4f3b-9703-0c0dc1bfe43e",
     "sdkVersion": "3",
     "enableMultiJS": true,
@@ -19,6 +19,9 @@
     "watchapp": {
       "watchface": false
     },
+    "capabilities": [
+      "health"
+    ],
     "messageKeys": [
       "dummy"
     ],
