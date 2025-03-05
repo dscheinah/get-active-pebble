@@ -27,7 +27,7 @@ static Settings settings = {
   .active_target = 6,
   .active_compensation = true,
   .active_warning = true,
-  .wakeup_deviation = 33,
+  .wakeup_deviation = 20,
   .begin = {24, 9, 9, 9, 9, 9, 24},
   .end = {-1, 17, 17, 17, 17, 17, -1},
 };
