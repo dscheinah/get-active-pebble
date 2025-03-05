@@ -60,7 +60,7 @@ State* state_init() {
   if (persist_exists(VERSION_KEY)) {
     persist_read_data(STATE_KEY, &state, sizeof(State));
     persist_read_data(HEALTH_KEY, &health_persistent, sizeof(HealthPersistent));
-    persist_read_data(SETTINGS_KEY, &health, sizeof(Settings));
+    persist_read_data(SETTINGS_KEY, &settings, sizeof(Settings));
   }
   state.health = &health;
   state.health_persistent = &health_persistent;
