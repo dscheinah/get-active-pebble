@@ -13,7 +13,6 @@ void event_init(State* state) {
   state->event->day = now->tm_mday;
   state->event->hours = hour;
   state->event->hours_done = hour > begin ? hour - begin : 0;
-  state->event->hours_left = 24 - hour;
   state->event->muted_warnings = hour < begin || hour > end;
 
   now->tm_hour++;

@@ -4,6 +4,7 @@
 typedef struct {
   HealthValue steps;
   HealthValue steps_week;
+  HealthValue steps_todo;
   HealthValue active;
 } Health;
 
@@ -32,7 +33,6 @@ typedef struct {
   uint16_t day;
   uint16_t hours;
   uint16_t hours_done;
-  uint16_t hours_left;
   bool muted_warnings;
 } Event;
 

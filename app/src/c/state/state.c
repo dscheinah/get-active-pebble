@@ -9,6 +9,7 @@
 static Health health = {
   .steps = 0,
   .steps_week = 0,
+  .steps_todo = 0,
   .active = 0,
 };
 
@@ -37,7 +38,6 @@ static Event event = {
   .day = 0,
   .hours = 0,
   .hours_done = 0,
-  .hours_left = 0,
   .muted_warnings = false,
 };
 

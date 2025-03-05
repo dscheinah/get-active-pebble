@@ -26,11 +26,11 @@ void calculation_init(State* state) {
     }
   }
 
-  int steps_per_hour = state->event->hours ? state->health->steps / state->event->hours : 0;
+  HealthValue steps = state->health->steps;
 
   state->calculation->step_target = step_target;
-  state->calculation->step_warning = state->health->steps + (steps_per_hour * state->event->hours_left) < step_target;
-  state->calculation->step_compliment = state->health->steps >= step_target;
+  state->calculation->step_warning = steps > step_target / 2 && steps + state->health->steps_todo < step_target;
+  state->calculation->step_compliment = steps >= step_target;
 
   int active_current = state->health->active - state->health_persistent->active_last;
   int active = active_current;
