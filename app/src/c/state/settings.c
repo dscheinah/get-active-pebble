@@ -1,7 +1,7 @@
 #include <pebble.h>
 #include "settings.h"
 
-State* global;
+static State* global;
 
 static void handle_inbox(DictionaryIterator* iter, void* context) {
   Tuple* step_target = dict_find(iter, MESSAGE_KEY_step_target);
