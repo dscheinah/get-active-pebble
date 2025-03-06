@@ -7,8 +7,8 @@ void event_init(State* state) {
   tm* now = localtime(&state->event->now);
 
   int hour = now->tm_hour;
-  int begin = state->settings->begin[now->tm_wday];
-  int end = state->settings->end[now->tm_wday];
+  int begin = state->settings->begin;
+  int end = state->settings->end;
 
   state->event->day = now->tm_mday;
   state->event->hours = hour;

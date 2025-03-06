@@ -23,8 +23,8 @@ typedef struct {
   bool active_compensation;
   bool active_warning;
   uint16_t wakeup_deviation;
-  short begin[7];
-  short end[7];
+  short begin;
+  short end;
 } Settings;
 
 typedef struct {

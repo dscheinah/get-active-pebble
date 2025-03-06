@@ -28,8 +28,8 @@ static Settings settings = {
   .active_compensation = true,
   .active_warning = true,
   .wakeup_deviation = 20,
-  .begin = {24, 9, 9, 9, 9, 9, 24},
-  .end = {-1, 17, 17, 17, 17, 17, -1},
+  .begin = 10,
+  .end = 18,
 };
 
 static Event event = {
