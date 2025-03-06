@@ -3,8 +3,11 @@
 
 #define MAX_TRY 23
 #define TIMEOUT 30000
+#define BUFFER_SIZE 64
 
 static State* global;
+
+static char buffer[BUFFER_SIZE] = "";
 
 inline bool notify(State* state) {
   if (state->calculation->step_warning && state->settings->step_warning) {
@@ -38,10 +41,13 @@ static void app_glance(AppGlanceReloadSession* session, size_t limit, void* cont
   if (limit < 1) {
     return;
   }
+
+  snprintf(buffer, BUFFER_SIZE, "{time_until(%d)|format('%%aR')} - %s", (int) global->event->next, global->event->muted_warnings ? "silent" : "active");
+
   const AppGlanceSlice slice = {
     .layout = {
       .icon = APP_GLANCE_SLICE_DEFAULT_ICON,
-      .subtitle_template_string = "Running",
+      .subtitle_template_string = buffer,
     },
     .expiration_time = global->event->next,
   };
