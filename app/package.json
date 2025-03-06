@@ -37,7 +37,12 @@
       "active_warning",
       "wakeup_deviation",
       "begin",
-      "end"
+      "end",
+      "sleep_target",
+      "sleep_end_hour",
+      "sleep_end_minute",
+      "sleep_compensation",
+      "sleep_warning"
     ],
     "resources": {
       "media": [

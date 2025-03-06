@@ -1,19 +1,27 @@
 #include <pebble.h>
 #include "main.h"
 
-#define HEIGHT 110
+#define HEIGHT 140
 #define FONT FONT_KEY_GOTHIC_18_BOLD
-#define FORMAT "Steps\n%d / %d\n\n%d / %d\nActive"
-#define BUFFER_SIZE 64
+#define FORMAT "Steps\n%d / %d\n\nSleep %s %s\n\n%d / %d\nActive"
+#define BUFFER_SIZE 96
+#define SLEEP_BUFFER_SIZE 8
 
 static TextLayer* text_layer;
 
 static char buffer[BUFFER_SIZE] = "";
 
+static char sleep_buffer[SLEEP_BUFFER_SIZE] = "";
+
 void main_init(State* state) {
+  tm* sleep = gmtime(state->calculation->sleep_warning ? &state->calculation->sleep_duration :&state->calculation->sleep_distance);
+  strftime(sleep_buffer, SLEEP_BUFFER_SIZE, "%H:%M", sleep);
+
   snprintf(buffer, BUFFER_SIZE, FORMAT,
     (int) state->health->steps,
     state->calculation->step_target,
+    state->calculation->sleep_warning ? "for" : "in",
+    sleep_buffer,
     state->calculation->active,
     state->calculation->active_target
   );

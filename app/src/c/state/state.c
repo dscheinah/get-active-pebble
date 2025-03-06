@@ -11,6 +11,7 @@ static Health health = {
   .steps_week = 0,
   .steps_todo = 0,
   .active = 0,
+  .sleep_week = 0,
 };
 
 static HealthPersistent health_persistent = {
@@ -30,11 +31,17 @@ static Settings settings = {
   .wakeup_deviation = 20,
   .begin = 10,
   .end = 18,
+  .sleep_target = 5,
+  .sleep_end_hour = 7,
+  .sleep_end_minute = 0,
+  .sleep_compensation = true,
+  .sleep_warning = true,
 };
 
 static Event event = {
   .now = 0,
   .next = 0,
+  .sleep_end = 0,
   .day = 0,
   .hours = 0,
   .hours_done = 0,
@@ -48,12 +55,16 @@ static Calculation calculation = {
   .active = 0,
   .active_target = 0,
   .active_warning = false,
+  .sleep_duration = 0,
+  .sleep_distance = 0,
+  .sleep_warning = false,
 };
 
 static State state = {
   .wakeup = -2,
   .muted_step_warning = -1,
   .muted_step_compliment = -1,
+  .muted_sleep_warning = -1,
 };
 
 State* state_init() {

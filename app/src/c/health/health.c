@@ -29,4 +29,11 @@ void health_init(State* state) {
     state->health_persistent->active_last = state->health_persistent->active_current;
     state->health_persistent->active_current = state->health->active;
   }
+
+  mask = health_service_metric_averaged_accessible(HealthMetricSleepSeconds, start, end, HealthServiceTimeScopeDaily);
+  if (mask & HealthServiceAccessibilityMaskAvailable) {
+    state->health->sleep_week = health_service_sum_averaged(HealthMetricSleepSeconds, start, end, HealthServiceTimeScopeDaily);
+  } else {
+    state->health->sleep_week = 0;
+  }
 }

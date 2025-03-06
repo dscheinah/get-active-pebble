@@ -10,6 +10,13 @@ static State* global;
 static char buffer[BUFFER_SIZE] = "";
 
 inline bool notify(State* state) {
+  if (state->calculation->sleep_warning && state->settings->sleep_warning) {
+    if (state->muted_sleep_warning == state->event->day) {
+      return false;
+    }
+    state->muted_sleep_warning = state->event->day;
+    return true;
+  }
   if (state->calculation->step_warning && state->settings->step_warning) {
     if (state->muted_step_warning == state->event->day) {
       return false;

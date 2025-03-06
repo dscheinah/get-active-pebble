@@ -6,6 +6,7 @@ typedef struct {
   HealthValue steps_week;
   HealthValue steps_todo;
   HealthValue active;
+  HealthValue sleep_week;
 } Health;
 
 typedef struct {
@@ -25,11 +26,17 @@ typedef struct {
   uint16_t wakeup_deviation;
   short begin;
   short end;
+  short sleep_target;
+  short sleep_end_hour;
+  short sleep_end_minute;
+  bool sleep_compensation;
+  bool sleep_warning;
 } Settings;
 
 typedef struct {
   time_t now;
   time_t next;
+  time_t sleep_end;
   uint16_t day;
   uint16_t hours;
   uint16_t hours_done;
@@ -43,12 +50,16 @@ typedef struct {
   uint16_t active;
   uint16_t active_target;
   bool active_warning;
+  time_t sleep_duration;
+  time_t sleep_distance;
+  bool sleep_warning;
 } Calculation;
 
 typedef struct {
   WakeupId wakeup;
   short muted_step_warning;
   short muted_step_compliment;
+  short muted_sleep_warning;
   Health* health;
   HealthPersistent* health_persistent;
   Settings* settings;

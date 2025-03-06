@@ -44,6 +44,26 @@ static void handle_inbox(DictionaryIterator* iter, void* context) {
   if (end) {
     global->settings->end = end->value->int16;
   }
+  Tuple* sleep_target = dict_find(iter, MESSAGE_KEY_sleep_target);
+  if (sleep_target) {
+    global->settings->sleep_target = sleep_target->value->int8 - 48;
+  }
+  Tuple* sleep_end_hour = dict_find(iter, MESSAGE_KEY_sleep_end_hour);
+  if (sleep_end_hour) {
+    global->settings->sleep_end_hour = sleep_end_hour->value->int16;
+  }
+  Tuple* sleep_end_minute = dict_find(iter, MESSAGE_KEY_sleep_end_minute);
+  if (sleep_end_minute) {
+    global->settings->sleep_end_minute = sleep_end_minute->value->int16;
+  }
+  Tuple* sleep_compensation = dict_find(iter, MESSAGE_KEY_sleep_compensation);
+  if (sleep_compensation) {
+    global->settings->sleep_compensation = (bool) sleep_compensation->value->int8;
+  }
+  Tuple* sleep_warning = dict_find(iter, MESSAGE_KEY_sleep_warning);
+  if (sleep_warning) {
+    global->settings->sleep_warning = (bool) sleep_warning->value->int8;
+  }
 
   window_stack_pop_all(false);
 }
@@ -52,7 +72,7 @@ void settings_init(State* state) {
   global = state;
 
   app_message_register_inbox_received(handle_inbox);
-  app_message_open(APP_MESSAGE_INBOX_SIZE_MINIMUM, 128);
+  app_message_open(256, 128);
 }
 
 void settings_deinit() {

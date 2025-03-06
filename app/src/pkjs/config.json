@@ -110,6 +110,64 @@
 		]
 	},
 	{
+		"type": "section",
+		"items": [
+			{
+				"type": "heading",
+				"defaultValue": "Sleep"
+			},
+			{
+				"type": "select",
+				"messageKey": "sleep_target",
+				"options": [
+					{"value": 1, "label": "1 h 30 m"},
+					{"value": 2, "label": "3 h"},
+					{"value": 3, "label": "4 h 30 m"},
+					{"value": 4, "label": "6 h"},
+					{"value": 5, "label": "7 h 30 m"},
+					{"value": 6, "label": "9 h"},
+					{"value": 7, "label": "10 h 30 m"},
+					{"value": 8, "label": "12 h"},
+					{"value": 9, "label": "13 h 30 m"}
+				],
+				"defaultValue": 5,
+				"label": "Target daily sleep duration",
+				"description": "Only contains recommended sleep durations as multiples of 90 minutes."
+			},
+			{
+				"type": "toggle",
+				"messageKey": "sleep_compensation",
+				"defaultValue": true,
+				"label": "Enable compensation",
+				"description": "Increases sleep duration if your daily average is below your target."
+			},
+			{
+				"type": "toggle",
+				"messageKey": "sleep_warning",
+				"defaultValue": true,
+				"label": "Enable reminder notification"
+			},
+			{
+				"type": "slider",
+				"messageKey": "sleep_end_hour",
+				"defaultValue": 7,
+				"label": "Wakeup hour",
+				"description": "Used to calculate the notification time and does not configure an alarm.",
+				"min": 0,
+				"max": 23
+			},
+			{
+				"type": "slider",
+				"messageKey": "sleep_end_minute",
+				"defaultValue": 0,
+				"label": "Wakeup minute",
+				"description": "Adds minutes to your configured wakeup hour.",
+				"min": 0,
+				"max": 59
+			}
+		]
+	},
+	{
 		"type": "submit",
 		"defaultValue": "SAVE"
 	}

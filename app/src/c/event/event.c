@@ -25,4 +25,12 @@ void event_init(State* state) {
   }
 
   state->event->next = mktime(now);
+
+  now->tm_hour = state->settings->sleep_end_hour;
+  now->tm_min = state->settings->sleep_end_minute;
+  state->event->sleep_end = mktime(now);
+  if (state->event->sleep_end < state->event->now) {
+    now->tm_mday++;
+    state->event->sleep_end = mktime(now);
+  }
 }
