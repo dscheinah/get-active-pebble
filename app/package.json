@@ -2,9 +2,13 @@
   "name": "get-active",
   "author": "Dscheinah",
   "version": "1.0.0",
-  "keywords": ["pebble-app"],
+  "keywords": [
+    "pebble-app"
+  ],
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "pebble-clay": "^1.0.4"
+  },
   "pebble": {
     "displayName": "Get active!",
     "uuid": "cff34931-83f9-4f3b-9703-0c0dc1bfe43e",
@@ -20,10 +24,20 @@
       "watchface": false
     },
     "capabilities": [
+      "configurable",
       "health"
     ],
     "messageKeys": [
-      "dummy"
+      "step_target",
+      "step_deviation",
+      "step_warning",
+      "step_compliment",
+      "active_target",
+      "active_compensation",
+      "active_warning",
+      "wakeup_deviation",
+      "begin",
+      "end"
     ],
     "resources": {
       "media": [

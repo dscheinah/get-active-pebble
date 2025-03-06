@@ -3,6 +3,7 @@
 #include "event/event.h"
 #include "health/health.h"
 #include "state/global.h"
+#include "state/settings.h"
 #include "state/state.h"
 #include "wakeup/wakeup.h"
 #include "window/main.h"
@@ -18,6 +19,7 @@ static void prv_init(void) {
     return;
   }
   main_init(state);
+  settings_init(state);
 
   s_window = window_create();
   window_set_window_handlers(s_window, (WindowHandlers) {
@@ -31,6 +33,7 @@ static void prv_init(void) {
 static void prv_deinit(void) {
   window_destroy(s_window);
 
+  settings_deinit();
   state_write();
 }
 

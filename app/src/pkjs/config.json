@@ -1,0 +1,116 @@
+[
+	{
+		"type": "heading",
+		"defaultValue": "Get active!"
+	},
+	{
+		"type": "section",
+		"items": [
+			{
+				"type": "heading",
+				"defaultValue": "Common"
+			},
+			{
+				"type": "slider",
+				"messageKey": "wakeup_deviation",
+				"defaultValue": 20,
+				"label": "Notification window size in minutes",
+				"description": "Randomizes the notifications around the next full hour.",
+				"min": 0,
+				"max": 40
+			}
+		]
+	},
+	{
+		"type": "section",
+		"items": [
+			{
+				"type": "heading",
+				"defaultValue": "Steps"
+			},
+			{
+				"type": "slider",
+				"messageKey": "step_target",
+				"defaultValue": 15000,
+				"label": "Number of target daily steps",
+				"min": 0,
+				"max": 100000
+			},
+			{
+				"type": "slider",
+				"messageKey": "step_deviation",
+				"defaultValue": 50,
+				"label": "Percentage of maximum adjustment",
+				"description": "Automatically adjusts the target based on your daily average.",
+				"min": 0,
+				"max": 100
+			},
+			{
+				"type": "toggle",
+				"messageKey": "step_warning",
+				"defaultValue": true,
+				"label": "Enable warning notification",
+				"description": "Triggers if you reached at least 50 % of your target, but will not make it based on your daily average."
+			},
+			{
+				"type": "toggle",
+				"messageKey": "step_compliment",
+				"defaultValue": true,
+				"label": "Enable notification on target reached"
+			}
+		]
+	},
+	{
+		"type": "section",
+		"items": [
+			{
+				"type": "heading",
+				"defaultValue": "Activity"
+			},
+			{
+				"type": "slider",
+				"messageKey": "active_target",
+				"defaultValue": 6,
+				"label": "Target hourly time spent active in minutes",
+				"min": 0,
+				"max": 60
+			},
+			{
+				"type": "toggle",
+				"messageKey": "active_compensation",
+				"defaultValue": true,
+				"label": "Enable compensation",
+				"description": "Allows to compensate bad hours with previous hours above target."
+			},
+			{
+				"type": "toggle",
+				"messageKey": "active_warning",
+				"defaultValue": true,
+				"label": "Enable warning notification",
+				"description": "Triggers if you did not reach your target within the last hour."
+			},
+			{
+				"type": "slider",
+				"messageKey": "begin",
+				"defaultValue": 10,
+				"label": "Earliest daily warning",
+				"description": "Accepts a full hour in 24 h format.",
+				"min": 0,
+				"max": 23
+			},
+			{
+				"type": "slider",
+				"messageKey": "end",
+				"defaultValue": 18,
+				"label": "Latest daily warning",
+				"description": "Accepts a full hour in 24 h format.",
+				"min": 0,
+				"max": 23
+			}
+		]
+	},
+	{
+		"type": "submit",
+		"defaultValue": "SAVE"
+	}
+]
