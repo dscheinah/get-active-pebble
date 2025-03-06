@@ -1,14 +1,6 @@
 #include <pebble.h>
 #include "calculation.h"
 
-inline int seconds(int minutes) {
-  return minutes * SECONDS_PER_MINUTE;
-}
-
-inline int minutes(int seconds) {
-  return seconds / SECONDS_PER_MINUTE;
-}
-
 void calculation_init(State* state) {
   uint16_t step_target = state->settings->step_target;
   if (state->settings->step_deviation) {
@@ -32,16 +24,16 @@ void calculation_init(State* state) {
   state->calculation->step_warning = steps > step_target / 2 && steps + state->health->steps_todo < step_target;
   state->calculation->step_compliment = steps >= step_target;
 
-  int active_current = state->health->active - state->health_persistent->active_last;
-  int active = active_current;
+  int active = state->health->active;
+  int active_target = state->settings->active_target;
+
   if (state->settings->active_compensation) {
-    int remaining = state->health_persistent->active_last - (state->event->hours_done * seconds(state->settings->active_target));
-    if (remaining > 0) {
-      active += remaining;
-    }
+     active_target *= state->event->hours_done;
+  } else {
+     active -= state->health_persistent->active_last;
   }
 
-  state->calculation->active = minutes(active);
-  state->calculation->active_current = minutes(active_current);
-  state->calculation->active_warning = active < state->settings->active_target;
+  state->calculation->active = active / SECONDS_PER_MINUTE;
+  state->calculation->active_target = active_target;
+  state->calculation->active_warning = active < active_target * SECONDS_PER_MINUTE;
 }

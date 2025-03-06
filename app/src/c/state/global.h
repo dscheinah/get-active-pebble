@@ -41,7 +41,7 @@ typedef struct {
   bool step_warning;
   bool step_compliment;
   uint16_t active;
-  uint16_t active_current;
+  uint16_t active_target;
   bool active_warning;
 } Calculation;
 

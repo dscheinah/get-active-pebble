@@ -15,7 +15,7 @@ void main_init(State* state) {
     (int) state->health->steps,
     state->calculation->step_target,
     state->calculation->active,
-    state->settings->active_target
+    state->calculation->active_target
   );
 }
 

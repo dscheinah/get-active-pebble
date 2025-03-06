@@ -46,7 +46,7 @@ static Calculation calculation = {
   .step_warning = false,
   .step_compliment = false,
   .active = 0,
-  .active_current = 0,
+  .active_target = 0,
   .active_warning = false,
 };
 
