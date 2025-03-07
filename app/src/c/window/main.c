@@ -53,10 +53,14 @@ static void active(Layer* layer, GContext* ctx) {
   helper_render_percentage_rect(layer, ctx, global->calculation->active_warning, global->calculation->active * 100 / global->calculation->active_target);
 }
 
+inline static bool use_sleep_duration() {
+  return global->calculation->sleep_distance < SECONDS_PER_HOUR * 1.5;
+}
+
 void main_init(State* state) {
   global = state;
 
-  tm* sleep = gmtime(global->calculation->sleep_distance < SECONDS_PER_HOUR ? &state->calculation->sleep_duration :&state->calculation->sleep_distance);
+  tm* sleep = gmtime(use_sleep_duration() ? &state->calculation->sleep_duration :&state->calculation->sleep_distance);
 
   snprintf(buffer_steps, BUFFER_SIZE, "%d / %d", (int) state->health->steps, state->calculation->step_target);
   strftime(buffer_sleep, BUFFER_SIZE, "%H:%M", sleep);
@@ -70,13 +74,19 @@ void main_load(Window* window) {
   GSize sleep = graphics_text_layout_get_content_size(buffer_sleep, font, bounds, GTextOverflowModeFill, GTextAlignmentCenter);
 
   bitmap_steps = gbitmap_create_with_resource(global->calculation->step_compliment ? RESOURCE_ID_compliment : RESOURCE_ID_steps);
-  bitmap_sleep = gbitmap_create_with_resource(global->calculation->sleep_distance < SECONDS_PER_HOUR ? RESOURCE_ID_sleep : RESOURCE_ID_awake);
+  bitmap_sleep = gbitmap_create_with_resource(use_sleep_duration() ? RESOURCE_ID_sleep : RESOURCE_ID_awake);
   bitmap_active = gbitmap_create_with_resource(RESOURCE_ID_active);
 
   int cw = bounds.size.w / 2;
   int ch = bounds.size.h / 2;
+
+  int max_hours = HOURS_PER_DAY - global->settings->begin;
+
   int sleep_w = sleep.w + GAP_SMALL;
-  int sleep_o = global->calculation->sleep_distance < SECONDS_PER_HOUR ? cw + BAR_WIDTH_HALF - sleep_w - FONT_SIZE : cw - BAR_WIDTH_HALF;
+  int sleep_o_min = cw - BAR_WIDTH_HALF;
+  int sleep_o_max = cw + BAR_WIDTH_HALF - sleep_w - FONT_SIZE;
+  int sleep_o_diff = sleep_o_max - sleep_o_min;
+  int sleep_o = use_sleep_duration() ? sleep_o_max : sleep_o_min + (sleep_o_diff * global->event->hours_done / max_hours);
 
   layer_steps = helper_layer_create(window_layer, GRect(cw - BAR_WIDTH_HALF, ch - GAP - BAR_HEIGHT, BAR_WIDTH, BAR_HEIGHT), steps);
   layer_sleep = helper_layer_create(window_layer, GRect(0, ch, bounds.size.w, 2), rect);
