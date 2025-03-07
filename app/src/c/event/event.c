@@ -20,8 +20,7 @@ void event_init(State* state) {
   now->tm_sec = 0;
 
   if (state->settings->wakeup_deviation) {
-    int target = state->settings->wakeup_deviation;
-    now->tm_min = (rand() % target) - (target / 2);
+    now->tm_min = rand() % state->settings->wakeup_deviation;
   }
 
   state->event->next = mktime(now);

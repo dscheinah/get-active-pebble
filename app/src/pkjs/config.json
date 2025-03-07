@@ -15,7 +15,7 @@
 				"messageKey": "wakeup_deviation",
 				"defaultValue": 20,
 				"label": "Notification window size in minutes",
-				"description": "Randomizes the notifications around the next full hour.",
+				"description": "Randomizes the notifications minute after the next full hour.",
 				"min": 0,
 				"max": 40
 			}
