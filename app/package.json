@@ -51,6 +51,31 @@
           "file": "icon.png",
           "name": "icon",
           "type": "bitmap"
+        },
+        {
+          "file": "steps.png",
+          "name": "steps",
+          "type": "bitmap"
+        },
+        {
+          "file": "active.png",
+          "name": "active",
+          "type": "bitmap"
+        },
+        {
+          "file": "compliment.png",
+          "name": "compliment",
+          "type": "bitmap"
+        },
+        {
+          "file": "sleep.png",
+          "name": "sleep",
+          "type": "bitmap"
+        },
+        {
+          "file": "awake.png",
+          "name": "awake",
+          "type": "bitmap"
         }
       ]
     }
