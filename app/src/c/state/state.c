@@ -46,6 +46,7 @@ static Event event = {
   .hours = 0,
   .hours_done = 0,
   .muted_warnings = false,
+  .muted_next = false,
 };
 
 static Calculation calculation = {

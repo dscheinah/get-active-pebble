@@ -49,7 +49,7 @@ static void app_glance(AppGlanceReloadSession* session, size_t limit, void* cont
     return;
   }
 
-  snprintf(buffer, BUFFER_SIZE, "{time_until(%d)|format('%%aR')} - %s", (int) global->event->next, global->event->muted_warnings ? "silent" : "active");
+  snprintf(buffer, BUFFER_SIZE, "{time_until(%d)|format('%%aR')} - %s", (int) global->event->next, global->event->muted_next ? "silent" : "active");
 
   const AppGlanceSlice slice = {
     .layout = {

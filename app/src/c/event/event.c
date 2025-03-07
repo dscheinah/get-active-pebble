@@ -15,6 +15,9 @@ void event_init(State* state) {
   state->event->hours_done = hour > begin ? hour - begin : 0;
   state->event->muted_warnings = hour < begin || hour > end;
 
+  hour++;
+  state->event->muted_next = hour < begin || hour > end;
+
   now->tm_hour++;
   now->tm_min = 0;
   now->tm_sec = 0;

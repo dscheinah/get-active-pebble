@@ -41,6 +41,7 @@ typedef struct {
   uint16_t hours;
   uint16_t hours_done;
   bool muted_warnings;
+  bool muted_next;
 } Event;
 
 typedef struct {
