@@ -60,7 +60,7 @@ inline static bool use_sleep_duration() {
 void main_init(State* state) {
   global = state;
 
-  tm* sleep = gmtime(use_sleep_duration() ? &state->calculation->sleep_duration :&state->calculation->sleep_distance);
+  tm* sleep = gmtime(use_sleep_duration() ? &state->calculation->sleep_duration : &state->calculation->sleep_distance);
 
   snprintf(buffer_steps, BUFFER_SIZE, "%d / %d", (int) state->health->steps, state->calculation->step_target);
   strftime(buffer_sleep, BUFFER_SIZE, "%H:%M", sleep);
@@ -80,13 +80,10 @@ void main_load(Window* window) {
   int cw = bounds.size.w / 2;
   int ch = bounds.size.h / 2;
 
-  int max_hours = HOURS_PER_DAY - global->settings->begin;
-
   int sleep_w = sleep.w + GAP_SMALL;
   int sleep_o_min = cw - BAR_WIDTH_HALF;
   int sleep_o_max = cw + BAR_WIDTH_HALF - sleep_w - FONT_SIZE;
-  int sleep_o_diff = sleep_o_max - sleep_o_min;
-  int sleep_o = use_sleep_duration() ? sleep_o_max : sleep_o_min + (sleep_o_diff * global->event->hours_done / max_hours);
+  int sleep_o = use_sleep_duration() ? sleep_o_max : sleep_o_min + ((sleep_o_max - sleep_o_min) * global->event->hours_done / (HOURS_PER_DAY - global->settings->begin));
 
   layer_steps = helper_layer_create(window_layer, GRect(cw - BAR_WIDTH_HALF, ch - GAP - BAR_HEIGHT, BAR_WIDTH, BAR_HEIGHT), steps);
   layer_sleep = helper_layer_create(window_layer, GRect(0, ch, bounds.size.w, 2), rect);
