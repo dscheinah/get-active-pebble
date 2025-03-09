@@ -43,7 +43,6 @@ static Event event = {
   .next = 0,
   .sleep_end = 0,
   .day = 0,
-  .hours = 0,
   .hours_done = 0,
   .muted_warnings = false,
   .muted_next = false,

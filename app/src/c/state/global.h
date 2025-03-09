@@ -40,7 +40,6 @@ typedef struct {
   time_t next;
   time_t sleep_end;
   uint16_t day;
-  uint16_t hours;
   uint16_t hours_done;
   bool muted_warnings;
   bool muted_next;
