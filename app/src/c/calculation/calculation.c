@@ -35,11 +35,11 @@ void calculation_init(State* state) {
 
   state->calculation->active = active / SECONDS_PER_MINUTE;
   state->calculation->active_target = active_target;
-  state->calculation->active_warning = active < active_target * SECONDS_PER_MINUTE;
+  state->calculation->active_warning = state->calculation->active < state->calculation->active_target;
 
-  int sleep_target = state->settings->sleep_target * SECONDS_PER_HOUR * 1.5;
+  int sleep_target = state->settings->sleep_target * SECONDS_PER_90_MINUTES;
   if (state->settings->sleep_compensation && state->health->sleep_week && state->health->sleep_week < sleep_target) {
-    sleep_target += SECONDS_PER_HOUR * 1.5;
+    sleep_target += SECONDS_PER_90_MINUTES;
   }
   state->calculation->sleep_duration = state->event->sleep_end - state->event->now;
   state->calculation->sleep_distance = state->calculation->sleep_duration - sleep_target;

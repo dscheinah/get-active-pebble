@@ -1,6 +1,8 @@
 #pragma once
 #include <pebble.h>
 
+#define SECONDS_PER_90_MINUTES 5400
+
 typedef struct {
   HealthValue steps;
   HealthValue steps_week;

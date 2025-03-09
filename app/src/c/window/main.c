@@ -54,7 +54,7 @@ static void active(Layer* layer, GContext* ctx) {
 }
 
 inline static bool use_sleep_duration() {
-  return global->calculation->sleep_distance < SECONDS_PER_HOUR * 1.5;
+  return global->calculation->sleep_distance < SECONDS_PER_90_MINUTES;
 }
 
 void main_init(State* state) {
