@@ -7,6 +7,7 @@ void health_init(State* state) {
   time_t end = start + SECONDS_PER_DAY;
 
   state->health->steps = health_service_sum_today(HealthMetricStepCount);
+  state->health->sleep = health_service_sum_today(HealthMetricSleepSeconds);
 
   HealthServiceAccessibilityMask mask;
 

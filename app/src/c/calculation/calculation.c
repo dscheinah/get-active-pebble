@@ -2,7 +2,7 @@
 #include "calculation.h"
 
 void calculation_init(State* state) {
-  uint16_t step_target = state->settings->step_target;
+  int step_target = state->settings->step_target;
   if (state->settings->step_deviation) {
     int offset = state->settings->step_target * state->settings->step_deviation / 100;
 
@@ -42,6 +42,6 @@ void calculation_init(State* state) {
     sleep_target += SECONDS_PER_90_MINUTES;
   }
   state->calculation->sleep_duration = state->event->sleep_end - state->event->now;
-  state->calculation->sleep_distance = state->calculation->sleep_duration - sleep_target;
-  state->calculation->sleep_warning = state->event->sleep_end - state->event->next < sleep_target;
+  state->calculation->sleep_distance = state->calculation->sleep_duration > sleep_target ? state->calculation->sleep_duration - sleep_target : 0;
+  state->calculation->sleep_warning = state->health->sleep && state->event->sleep_end - state->event->next < sleep_target;
 }
