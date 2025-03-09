@@ -10,34 +10,19 @@ static State* global;
 static char buffer[BUFFER_SIZE] = "";
 
 inline static bool notify(State* state) {
-  if (state->calculation->sleep_warning && state->settings->sleep_warning) {
-    if (state->muted_sleep_warning == state->event->day) {
-      return false;
-    }
+  if (state->calculation->sleep_warning && state->settings->sleep_warning && state->muted_sleep_warning != state->event->day) {
     state->muted_sleep_warning = state->event->day;
     return true;
   }
-  if (state->calculation->step_warning && state->settings->step_warning) {
-    if (state->muted_step_warning == state->event->day) {
-      return false;
-    }
+  if (state->calculation->step_warning && state->settings->step_warning && state->muted_step_warning != state->event->day) {
     state->muted_step_warning = state->event->day;
     return true;
   }
-  if (state->calculation->step_compliment && state->settings->step_compliment) {
-    if (state->muted_step_compliment == state->event->day) {
-      return false;
-    }
+  if (state->calculation->step_compliment && state->settings->step_compliment && state->muted_step_compliment != state->event->day) {
     state->muted_step_compliment = state->event->day;
     return true;
   }
-  if (state->calculation->active_warning && state->settings->active_warning) {
-    if (state->event->muted_warnings) {
-      return false;
-    }
-    return true;
-  }
-  return false;
+  return state->calculation->active_warning && state->settings->active_warning && !state->event->muted_warnings;
 }
 
 static void timeout() {
