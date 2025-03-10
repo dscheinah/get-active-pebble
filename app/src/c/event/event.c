@@ -7,6 +7,7 @@ void event_init(State* state) {
   tm* next = localtime(&state->event->now);
 
   state->event->day = next->tm_mday;
+  state->event->hours = next->tm_hour;
   state->event->hours_done = next->tm_hour > state->settings->begin ? next->tm_hour - state->settings->begin : 0;
   state->event->muted_warnings = next->tm_hour < state->settings->begin || next->tm_hour > state->settings->end;
 
