@@ -50,6 +50,7 @@ static Event event = {
 
 static Calculation calculation = {
   .step_target = 0,
+  .step_forecast = 0,
   .step_warning = false,
   .step_compliment = false,
   .active = 0,

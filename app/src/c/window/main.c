@@ -40,11 +40,22 @@ static char buffer_active[BUFFER_SIZE] = "";
 
 static void rect(Layer* layer, GContext* ctx) {
   GRect bounds = layer_get_bounds(layer);
+  graphics_context_set_stroke_color(ctx, GColorBlack);
   graphics_draw_rect(ctx, GRect(0, 0, bounds.size.w, bounds.size.h));
 }
 
 static void steps(Layer* layer, GContext* ctx) {
   rect(layer, ctx);
+
+  if (global->calculation->step_forecast < global->calculation->step_target) {
+    GRect bounds = layer_get_bounds(layer);
+
+    int pos = (bounds.size.w * global->calculation->step_forecast / global->calculation->step_target);
+
+    graphics_context_set_stroke_color(ctx, COLOR_FALLBACK(GColorLightGray, GColorDarkGray));
+    graphics_draw_line(ctx, GPoint(pos, 1), GPoint(pos, bounds.size.h - 2));
+  }
+
   helper_render_percentage_rect(layer, ctx, global->calculation->step_warning, global->health->steps * 100 / global->calculation->step_target);
 }
 

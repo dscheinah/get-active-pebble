@@ -47,6 +47,7 @@ typedef struct {
 
 typedef struct {
   uint16_t step_target;
+  uint16_t step_forecast;
   bool step_warning;
   bool step_compliment;
   uint16_t active;

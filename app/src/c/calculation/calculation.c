@@ -19,7 +19,8 @@ void calculation_init(State* state) {
   }
 
   state->calculation->step_target = step_target;
-  state->calculation->step_warning = state->health->steps > step_target / 2 && state->health->steps + state->health->steps_todo < step_target * 100 / 110;
+  state->calculation->step_forecast = state->health->steps + state->health->steps_todo;
+  state->calculation->step_warning = state->health->steps > step_target / 2 && state->calculation->step_forecast < step_target * 100 / 110;
   state->calculation->step_compliment = state->health->steps >= step_target;
 
   int active = state->health->active;
