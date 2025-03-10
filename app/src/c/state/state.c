@@ -11,7 +11,6 @@ static Health health = {
   .steps_week = 0,
   .steps_todo = 0,
   .active = 0,
-  .sleep = 0,
   .sleep_week = 0,
 };
 

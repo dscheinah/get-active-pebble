@@ -8,7 +8,6 @@ typedef struct {
   HealthValue steps_week;
   HealthValue steps_todo;
   HealthValue active;
-  HealthValue sleep;
   HealthValue sleep_week;
 } Health;
 
