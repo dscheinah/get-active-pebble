@@ -42,5 +42,5 @@ void calculation_init(State* state) {
   }
   state->calculation->sleep_duration = state->event->sleep_end - state->event->now;
   state->calculation->sleep_distance = state->calculation->sleep_duration > sleep_target ? state->calculation->sleep_duration - sleep_target : 0;
-  state->calculation->sleep_warning = state->calculation->sleep_distance > 0 && state->event->sleep_end - state->event->next < sleep_target;
+  state->calculation->sleep_warning = state->event->sleep_end - state->event->next < sleep_target;
 }

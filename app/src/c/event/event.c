@@ -23,7 +23,9 @@ void event_init(State* state) {
   sleep->tm_hour = state->settings->sleep_end_hour;
   sleep->tm_min = state->settings->sleep_end_minute;
   state->event->sleep_end = mktime(sleep);
+  state->event->sleep_day = next->tm_mday;
   if (state->event->sleep_end < state->event->now) {
     state->event->sleep_end += SECONDS_PER_DAY;
+    state->event->sleep_day++;
   }
 }
