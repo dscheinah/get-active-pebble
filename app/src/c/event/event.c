@@ -15,8 +15,8 @@ void event_init(State* state) {
   next->tm_min = state->settings->wakeup_deviation ? rand() % state->settings->wakeup_deviation : 0;
   next->tm_sec = 0;
 
-  state->event->next = mktime(next);
   state->event->muted_next = next->tm_hour < state->settings->begin || next->tm_hour > state->settings->end;
+  state->event->next = mktime(next);
 
   tm* sleep = localtime(&state->event->now);
 
