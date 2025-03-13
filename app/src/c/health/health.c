@@ -20,13 +20,13 @@ void health_init(State* state) {
     state->health->steps_week = state->settings->step_target;
   }
   if (state->event->hours) {
-    if (!steps_per_hour) {
-      steps_per_hour = state->health->steps / state->event->hours;
-    } else {
+    if (steps_per_hour) {
       steps_per_hour = (steps_per_hour + (state->health->steps / state->event->hours)) / 2;
+    } else {
+      steps_per_hour = state->health->steps / state->event->hours;
     }
   }
-  state->health->steps_todo = steps_per_hour * (HOURS_PER_DAY - state->event->hours_done);
+  state->health->steps_todo = steps_per_hour * (HOURS_PER_DAY - state->event->hours);
 
   state->health->active = health_service_sum_today(HealthMetricActiveSeconds);
   if (state->health_persistent->wakeup != state->wakeup) {
