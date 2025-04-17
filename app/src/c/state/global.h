@@ -1,6 +1,7 @@
 #pragma once
 #include <pebble.h>
 
+#define SECONDS_PER_30_MINUTES 1800
 #define SECONDS_PER_90_MINUTES 5400
 
 typedef struct {
